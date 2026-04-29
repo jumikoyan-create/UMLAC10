@@ -2,38 +2,41 @@ package co.edu.poli.contexto3.modelo;
 
 public class Astronauta extends Persona {
 
-    private String fechadenacimiento;
+    private static final long serialVersionUID = 3L;
 
-    public Astronauta() {
-    }
+    // ✅ Astronauta tiene su propia especialidad (no depende de Persona)
+    private String especialidad;
+
+    public Astronauta() {}
 
     public Astronauta(String nombre, String id, String sexo) {
-        super(nombre, id);
+        super(nombre, id, sexo);
     }
 
-    public String getFechadenacimiento() {
-        return fechadenacimiento;
+    // ✅ Constructor completo con especialidad
+    public Astronauta(String nombre, String id, String sexo, String especialidad) {
+        super(nombre, id, sexo);
+        this.especialidad = especialidad;
     }
 
-    public void setFechadenacimiento(String fechadenacimiento) throws IllegalArgumentException {
-        if (fechadenacimiento == null || fechadenacimiento.trim().isEmpty()) {
-            throw new IllegalArgumentException("La fecha de nacimiento no puede ser nula o vacía");
-        }
-        this.fechadenacimiento = fechadenacimiento;
-    }
+    public String getEspecialidad() { return especialidad; }
 
-    @Override
-    public String toString() {
-        return "Astronauta{" +
-                "fechadenacimiento='" + fechadenacimiento + '\'' +
-                '}';
+    public void setEspecialidad(String especialidad) {
+        if (especialidad == null || especialidad.trim().isEmpty())
+            throw new IllegalArgumentException("La especialidad no puede ser nula o vacía");
+        this.especialidad = especialidad;
     }
 
     @Override
     public int sueldoSinPasaje() {
-        int sueldo = 5000000;
-        int pasaje = 180000;
-        int resultado = sueldo - pasaje;
-        return resultado;
+        return 5000000 - 180000;
+    }
+
+    @Override
+    public String toString() {
+        return "Astronauta{nombre='" + getNombre() +
+               "', id='" + getId() +
+               "', sexo='" + getSexo() +
+               "', especialidad='" + especialidad + "'}";
     }
 }
