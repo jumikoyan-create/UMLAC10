@@ -1,4 +1,4 @@
-package co.edu.poli.actividad10.contexto3.vista;
+package co.edu.poli.contexto3.vista;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

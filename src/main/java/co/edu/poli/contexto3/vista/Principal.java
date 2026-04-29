@@ -1,4 +1,4 @@
-package co.edu.poli.actividad10.contexto3.vista;
+package co.edu.poli.contexto3.vista;
 
 import co.edu.poli.contexto3.modelo.*;
 import co.edu.poli.contexto3.servicios.ImplementacionOperacionCRUD;
