@@ -4,7 +4,6 @@ public class Astronauta extends Persona {
 
     private static final long serialVersionUID = 3L;
 
-    // ✅ Astronauta tiene su propia especialidad (no depende de Persona)
     private String especialidad;
 
     public Astronauta() {}
@@ -13,7 +12,6 @@ public class Astronauta extends Persona {
         super(nombre, id, sexo);
     }
 
-    // ✅ Constructor completo con especialidad
     public Astronauta(String nombre, String id, String sexo, String especialidad) {
         super(nombre, id, sexo);
         this.especialidad = especialidad;

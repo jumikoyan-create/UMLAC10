@@ -12,45 +12,35 @@ import co.edu.poli.contexto3.modelo.Persona;
 import co.edu.poli.contexto3.servicios.ImplementacionOperacionCRUD;
 
 public class PrimaryController {
-
-    // ── ComboBoxes ───────────────────────────
     @FXML private ComboBox<String> cmbOperacion;
     @FXML private ComboBox<String> cmbTipo;
     @FXML private ComboBox<String> cmbSexo;
 
-    // ── Panel formulario ─────────────────────
     @FXML private VBox  panelFormulario;
     @FXML private Label lblTituloFormulario;
 
-    // ── Campos comunes ───────────────────────
     @FXML private TextField txtId;
     @FXML private TextField txtNombre;
 
-    // ── Campo Científico: experiencia ────────
     @FXML private Label     lblExperiencia;
     @FXML private TextField txtExperiencia;
 
-    // ── Campo Astronauta: especialidad ───────
     @FXML private Label     lblEspecialidad;
     @FXML private TextField txtEspecialidad;
 
-    // ── Tabla ────────────────────────────────
     @FXML private TableView<Persona>           tablaPersona;
     @FXML private TableColumn<Persona, String> colTipo;
     @FXML private TableColumn<Persona, String> colId;
     @FXML private TableColumn<Persona, String> colNombre;
     @FXML private TableColumn<Persona, String> colSexo;
-    @FXML private TableColumn<Persona, String> colExtra; // Experiencia o Especialidad
+    @FXML private TableColumn<Persona, String> colExtra; 
 
-    // ── Resultado y botón ────────────────────
     @FXML private TextArea txtResultado;
     @FXML private Button   btnEjecutar;
 
     private final ImplementacionOperacionCRUD crud = new ImplementacionOperacionCRUD();
 
-    // ════════════════════════════════════════
-    //  INICIALIZACIÓN
-    // ════════════════════════════════════════
+  
     @FXML
     public void initialize() {
         cmbOperacion.setItems(FXCollections.observableArrayList(
@@ -61,7 +51,6 @@ public class PrimaryController {
         ));
         cmbSexo.setItems(FXCollections.observableArrayList("M", "F"));
 
-        // Columnas con lambda (evita errores de módulos)
         colId.setCellValueFactory(data ->
             new SimpleStringProperty(data.getValue().getId()));
         colNombre.setCellValueFactory(data ->
@@ -69,14 +58,12 @@ public class PrimaryController {
         colSexo.setCellValueFactory(data ->
             new SimpleStringProperty(data.getValue().getSexo()));
 
-        // Columna Tipo
         colTipo.setCellValueFactory(data -> {
             String tipo = (data.getValue() instanceof Astronauta)
                 ? "🚀 Astronauta" : "🔬 Científico";
             return new SimpleStringProperty(tipo);
         });
 
-        // Columna Extra: Experiencia si es Científico, Especialidad si es Astronauta
         colExtra.setCellValueFactory(data -> {
             Persona p = data.getValue();
             if (p instanceof Astronauta) {
@@ -90,9 +77,6 @@ public class PrimaryController {
         });
     }
 
-    // ════════════════════════════════════════
-    //  MOSTRAR FORMULARIO
-    // ════════════════════════════════════════
     @FXML
     private void mostrarFormulario() {
         String operacion = cmbOperacion.getValue();
@@ -102,8 +86,7 @@ public class PrimaryController {
         panelFormulario.setVisible(true);
         panelFormulario.setManaged(true);
         lblTituloFormulario.setText(operacion + " → " + tipo);
-
-        // Mostrar campo correcto según tipo
+        
         boolean esCientifico  = "Científico".equals(tipo);
         boolean esAstronauta  = "Astronauta".equals(tipo);
 
@@ -117,14 +100,13 @@ public class PrimaryController {
         txtEspecialidad.setVisible(esAstronauta);
         txtEspecialidad.setManaged(esAstronauta);
 
-        // Para Buscar y Eliminar solo se necesita el ID
         boolean soloId = "Buscar".equals(operacion) || "Eliminar".equals(operacion);
         txtNombre.setDisable(soloId);
         cmbSexo.setDisable(soloId);
         txtExperiencia.setDisable(soloId);
         txtEspecialidad.setDisable(soloId);
 
-        // Color del botón según operación
+
         String color;
         switch (operacion) {
             case "Crear":      color = "#27ae60"; break;
@@ -140,9 +122,6 @@ public class PrimaryController {
         btnEjecutar.setText("▶ " + operacion);
     }
 
-    // ════════════════════════════════════════
-    //  EJECUTAR
-    // ════════════════════════════════════════
     @FXML
     private void ejecutarOperacion() {
         String operacion = cmbOperacion.getValue();
@@ -155,9 +134,6 @@ public class PrimaryController {
         }
     }
 
-    // ════════════════════════════════════════
-    //  CREAR
-    // ════════════════════════════════════════
     private void crear() {
         try {
             String id     = txtId.getText().trim();
@@ -196,9 +172,6 @@ public class PrimaryController {
         }
     }
 
-    // ════════════════════════════════════════
-    //  BUSCAR
-    // ════════════════════════════════════════
     private void buscar() {
         try {
             String id = txtId.getText().trim();
@@ -228,9 +201,6 @@ public class PrimaryController {
         }
     }
 
-    // ════════════════════════════════════════
-    //  ACTUALIZAR
-    // ════════════════════════════════════════
     private void actualizar() {
         try {
             String id     = txtId.getText().trim();
@@ -265,9 +235,6 @@ public class PrimaryController {
         }
     }
 
-    // ════════════════════════════════════════
-    //  ELIMINAR
-    // ════════════════════════════════════════
     private void eliminar() {
         try {
             String id = txtId.getText().trim();
@@ -281,9 +248,6 @@ public class PrimaryController {
         }
     }
 
-    // ════════════════════════════════════════
-    //  GUARDAR / CARGAR / LISTAR / SALIR
-    // ════════════════════════════════════════
     @FXML
     private void guardar() {
         try {
@@ -322,10 +286,6 @@ public class PrimaryController {
 
     @FXML
     private void salir() { System.exit(0); }
-
-    // ════════════════════════════════════════
-    //  HELPERS
-    // ════════════════════════════════════════
     @FXML
     private void limpiar() {
         limpiarCampos();
@@ -352,4 +312,5 @@ public class PrimaryController {
         tablaPersona.setItems(lista);
         tablaPersona.refresh();
     }
+   
 }

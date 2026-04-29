@@ -7,7 +7,6 @@ import java.io.*;
 
 public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArchivo {
 
-    // ✅ Inicia vacío, crece dinámicamente
     private Persona[] personaa = new Persona[0];
 
     public Persona[] getPersonas() {
@@ -18,9 +17,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         this.personaa = personas;
     }
 
-    // ════════════════════════════════════════
-    //  CREAR
-    // ════════════════════════════════════════
     @Override
     public void crear(Persona p) {
         if (p == null)
@@ -28,7 +24,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         if (leer(p.getId()) != null)
             throw new IllegalArgumentException("Ya existe una persona con ese ID: " + p.getId());
 
-        // Buscar espacio vacío (null) primero
         for (int i = 0; i < personaa.length; i++) {
             if (personaa[i] == null) {
                 personaa[i] = p;
@@ -36,7 +31,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
             }
         }
 
-        // Si no hay espacio, crecer el arreglo
         Persona[] nuevo = new Persona[personaa.length + 1];
         for (int i = 0; i < personaa.length; i++) {
             nuevo[i] = personaa[i];
@@ -45,9 +39,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         personaa = nuevo;
     }
 
-    // ════════════════════════════════════════
-    //  LEER / BUSCAR
-    // ════════════════════════════════════════
     @Override
     public Persona leer(String id) {
         if (id == null)
@@ -60,10 +51,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         return null;
     }
 
-    // ════════════════════════════════════════
-    //  ACTUALIZAR
-    // ════════════════════════════════════════
-    @Override
     public void actualizar(String id, Persona nueva) {
         if (id == null || nueva == null)
             throw new IllegalArgumentException("El ID y la persona no pueden ser nulos");
@@ -76,9 +63,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         throw new IllegalArgumentException("No se encontró persona con ID: " + id);
     }
 
-    // ════════════════════════════════════════
-    //  ELIMINAR
-    // ════════════════════════════════════════
     @Override
     public void eliminar(String id) {
         if (id == null)
@@ -92,9 +76,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         throw new IllegalArgumentException("No se encontró persona con ID: " + id);
     }
 
-    // ════════════════════════════════════════
-    //  LISTAR (✅ ahora muestra tipo correctamente)
-    // ════════════════════════════════════════
     public String listar() {
         StringBuilder resultado = new StringBuilder("\n--- LISTADO DE PERSONAS ---\n");
         int count = 0;
@@ -109,9 +90,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         return resultado.toString();
     }
 
-    // ════════════════════════════════════════
-    //  SERIALIZAR
-    // ════════════════════════════════════════
     @Override
     public String serializar(Persona[] personas, String path, String name) {
         try (FileOutputStream fos = new FileOutputStream(path + name);
@@ -123,9 +101,6 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
         }
     }
 
-    // ════════════════════════════════════════
-    //  DESERIALIZAR
-    // ════════════════════════════════════════
     @Override
     public Persona[] deserializar(String path, String name) {
         try (FileInputStream fis = new FileInputStream(path + name);

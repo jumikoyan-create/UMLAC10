@@ -19,7 +19,7 @@ public abstract class Persona implements Serializable {
         this.sexo   = sexo;
     }
 
-    // ── Getters / Setters ──────────────────
+
     public String getNombre() { return nombre; }
 
     public void setNombre(String nombre) {
@@ -34,7 +34,7 @@ public abstract class Persona implements Serializable {
 
     public void setSexo(String sexo) { this.sexo = sexo; }
 
-    // ── Métodos ────────────────────────────
+
     public final void mostrarTipo() {
         System.out.println("Soy una persona del sistema");
     }

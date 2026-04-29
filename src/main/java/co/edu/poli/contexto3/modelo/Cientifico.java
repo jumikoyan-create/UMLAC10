@@ -4,7 +4,6 @@ public class Cientifico extends Persona {
 
     private static final long serialVersionUID = 2L;
 
-    // ✅ experiencia es propia de Científico (eliminada de Persona)
     private String experiencia;
     private static double sueldo;
 
