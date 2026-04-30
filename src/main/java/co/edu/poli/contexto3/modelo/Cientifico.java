@@ -1,51 +1,40 @@
 package co.edu.poli.contexto3.modelo;
 
-public class Cientifico extends Persona {
+public class Cientifico extends Entidad {
 
-    private static final long serialVersionUID = 2L;
+    private String especialidad;
+    private int experienciaAnios;
 
-    private String experiencia;
-    private static double sueldo;
-
-    public Cientifico() {}
-
-    public Cientifico(String nombre, String id, String sexo) {
-        super(nombre, id, sexo);
+    public Cientifico() {
+        super();
     }
 
-    public Cientifico(String nombre, String id, String sexo, String experiencia) {
-        super(nombre, id, sexo);
-        this.experiencia = experiencia;
+    public Cientifico(String id, String nombre, String especialidad, int experienciaAnios) {
+        super(id, nombre); 
+        this.especialidad = especialidad;
+        this.experienciaAnios = experienciaAnios;
     }
 
-    public String getExperiencia() { return experiencia; }
 
-    public void setExperiencia(String experiencia) {
-        if (experiencia == null || experiencia.trim().isEmpty())
-            throw new IllegalArgumentException("La experiencia no puede ser nula o vacía");
-        this.experiencia = experiencia;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public static double getSueldo()              { return sueldo; }
-    public static void   setSueldo(double sueldo) {
-        if (sueldo < 0)
-            throw new IllegalArgumentException("El sueldo no puede ser negativo");
-        Cientifico.sueldo = sueldo;
+    public int getExperienciaAnios() {
+        return experienciaAnios;
     }
 
-    @Override
-    public int operacion(int i) { return i * 2; }
 
-    @Override
-    public int sueldoSinPasaje() {
-        return 2000000 - 180000;
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public void setExperienciaAnios(int experienciaAnios) {
+        this.experienciaAnios = experienciaAnios;
     }
 
     @Override
     public String toString() {
-        return "Cientifico{nombre='" + getNombre() +
-               "', id='" + getId() +
-               "', sexo='" + getSexo() +
-               "', experiencia='" + experiencia + "'}";
+        return getNombre(); 
     }
 }

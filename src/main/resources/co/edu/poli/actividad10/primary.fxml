@@ -1,162 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="640.0" prefWidth="700.0"
-    xmlns="http://javafx.com/javafx/11"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="co.edu.poli.contexto3.controlador.PrimaryController"
-    style="-fx-background-color: #f0f4f8;">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.poli.contexto3.controlador.PrimaryController"
+            prefWidth="1000" prefHeight="680">
 
-    <top>
-        <VBox alignment="CENTER" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
-            <Label text="Sistema CRUD - Personas"
-                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;">
-                <font><Font name="High Tower Text" size="26.0"/></font>
-            </Label>
-            <Label text="Científicos y Astronautas"
-                   style="-fx-font-size: 13px; -fx-text-fill: #bdc3c7;"/>
+    <!-- ══════════════════════════════════════════
+         MENÚ IZQUIERDO
+    ══════════════════════════════════════════ -->
+    <left>
+        <VBox spacing="6" prefWidth="210"
+              style="-fx-padding: 12; -fx-background-color: #1a1a2e;">
+
+            <Label text="🌌 Sistema Espacial"
+                   style="-fx-text-fill: #e0e0ff; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Separator/>
+
+            <!-- MODO REGISTRO -->
+            <Label text="REGISTRAR" style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+
+            <Button text="👨‍🚀  Astronauta"    onAction="#activarModoAstronauta"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🔬  Científico"    onAction="#activarModoCientifico"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🌍  Suelo"          onAction="#activarModoSuelo"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🪐  Planeta"        onAction="#activarModoPlaneta"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🚀  Misión"         onAction="#activarModoMision"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🛸  Nave"           onAction="#activarModoNave"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="📦  Contenedor"     onAction="#activarModoContenedor"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #16213e; -fx-text-fill: #a0c4ff;"/>
+            <Button text="🪨  Muestra"        onAction="#activarModoMuestra"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+            <Separator/>
+
+            <!-- CRUD -->
+            <Label text="OPERACIONES" style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+
+            <Button text="✔  Crear / Guardar"      onAction="#crear"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #2e7d32; -fx-text-fill: white;"/>
+            <Button text="🔍  Buscar por ID"        onAction="#buscar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #1565c0; -fx-text-fill: white;"/>
+            <Button text="✏  Actualizar seleccionado" onAction="#actualizar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #e65100; -fx-text-fill: white;"/>
+            <Button text="🗑  Eliminar seleccionado"  onAction="#eliminar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #b71c1c; -fx-text-fill: white;"/>
+            <Button text="📋  Listar todos"           onAction="#listar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #37474f; -fx-text-fill: white;"/>
+
+            <Separator/>
+
+            <!-- PERSISTENCIA -->
+            <Label text="PERSISTENCIA" style="-fx-text-fill: #888; -fx-font-size: 10px;"/>
+
+            <Button text="💾  Serializar"   onAction="#serializar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #4a148c; -fx-text-fill: white;"/>
+            <Button text="📂  Deserializar" onAction="#deserializar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #4a148c; -fx-text-fill: white;"/>
+
+            <Separator/>
+            <Button text="🧹  Limpiar campos" onAction="#limpiarCampos"
+                    maxWidth="Infinity"/>
         </VBox>
-    </top>
+    </left>
 
+    <!-- ══════════════════════════════════════════
+         CONTENIDO CENTRAL
+    ══════════════════════════════════════════ -->
     <center>
-        <VBox spacing="12.0" style="-fx-padding: 15;">
+        <VBox spacing="10" style="-fx-padding: 15;">
 
-            <HBox spacing="20.0" alignment="CENTER_LEFT">
-                <VBox spacing="5.0">
-                    <Label text="Operación:" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-                    <ComboBox fx:id="cmbOperacion" prefWidth="180.0"
-                              promptText="Seleccione operación"
-                              onAction="#mostrarFormulario"
-                              style="-fx-background-radius: 8; -fx-border-radius: 8;"/>
-                </VBox>
-                <VBox spacing="5.0">
-                    <Label text="Tipo de Persona:" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-                    <ComboBox fx:id="cmbTipo" prefWidth="180.0"
-                              promptText="Científico / Astronauta"
-                              onAction="#mostrarFormulario"
-                              style="-fx-background-radius: 8; -fx-border-radius: 8;"/>
-                </VBox>
-            </HBox>
+            <!-- FORMULARIO -->
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="160" prefWidth="180"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="320"/>
+                </columnConstraints>
 
-            <VBox fx:id="panelFormulario" spacing="10.0" managed="false" visible="false"
-                  style="-fx-background-color: white; -fx-background-radius: 10;
-                         -fx-border-color: #dcdde1; -fx-border-radius: 10; -fx-padding: 15;">
+                <!-- ID -->
+                <Label text="ID:" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtId" promptText="Ej: A001"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label fx:id="lblTituloFormulario" text="Datos"
-                       style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;"/>
+                <!-- Nombre -->
+                <Label text="Nombre:" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombre" promptText="Nombre descriptivo"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                <GridPane hgap="15.0" vgap="10.0">
-                    <columnConstraints>
-                        <ColumnConstraints prefWidth="120.0"/>
-                        <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints prefHeight="32.0"/>
-                        <RowConstraints prefHeight="32.0"/>
-                        <RowConstraints prefHeight="32.0"/>
-                        <RowConstraints prefHeight="32.0"/>
-                    </rowConstraints>
+                <!-- Extra 1 (dinámico) -->
+                <Label fx:id="lblExtra1" text="Campo 1:" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtExtra1" promptText="Valor"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                    <Label text="ID:" style="-fx-font-size: 13px;"
-                           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <TextField fx:id="txtId" promptText="Ingrese ID"
-                               style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dcdde1; -fx-padding: 5;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <!-- Extra 2 (dinámico) -->
+                <Label fx:id="lblExtra2" text="Campo 2:" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtExtra2" promptText="Valor"
+                           GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                    <Label text="Nombre:" style="-fx-font-size: 13px;"
-                           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                    <TextField fx:id="txtNombre" promptText="Ingrese nombre"
-                               style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dcdde1; -fx-padding: 5;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-                  
-                    <Label text="Sexo:" style="-fx-font-size: 13px;"
-                           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                    <ComboBox fx:id="cmbSexo" prefWidth="200.0"
-                              style="-fx-background-radius: 8; -fx-border-radius: 8;"
-                              GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-
-                    <!-- Experiencia (solo Científico) -->
-                    <Label fx:id="lblExperiencia" text="Experiencia:" style="-fx-font-size: 13px;"
+                <!-- Extra 3 (dinámico, oculto por defecto) -->
+                <Label fx:id="lblExtra3" text="Campo 3:" style="-fx-font-weight: bold;"
+                       managed="false" visible="false"
+                       GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtExtra3" promptText="Valor"
                            managed="false" visible="false"
-                           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                    <TextField fx:id="txtExperiencia" promptText="Ingrese experiencia"
-                               managed="false" visible="false"
-                               style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dcdde1; -fx-padding: 5;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                           GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                    <Label fx:id="lblEspecialidad" text="Especialidad:" style="-fx-font-size: 13px;"
-                           managed="false" visible="false"
-                           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                    <TextField fx:id="txtEspecialidad" promptText="Ingrese especialidad"
-                               managed="false" visible="false"
-                               style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dcdde1; -fx-padding: 5;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                </GridPane>
+                <!-- ComboBox Astronauta -->
+                <Label fx:id="lblCmbAstronauta" text="Astronauta recolector:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbAstronauta" promptText="Selecciona astronauta"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-                <!-- Botones del formulario -->
-                <HBox spacing="10.0">
-                    <Button fx:id="btnEjecutar" text="▶ Ejecutar"
-                            onAction="#ejecutarOperacion"
-                            style="-fx-background-color: #27ae60; -fx-text-fill: white;
-                                   -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 20 7 20;"/>
-                    <Button text="🧹 Limpiar" onAction="#limpiar"
-                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;
-                                   -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 20 7 20;"/>
-                </HBox>
-            </VBox>
+                <!-- ComboBox Científico -->
+                <Label fx:id="lblCmbCientifico" text="Científico analizador:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbCientifico" promptText="Selecciona científico"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-            <!-- ═══ TABLA ═══ -->
-            <TableView fx:id="tablaPersona" prefHeight="180.0" VBox.vgrow="ALWAYS"
-                       style="-fx-background-radius: 10; -fx-border-color: #dcdde1; -fx-border-radius: 10;">
+                <!-- ComboBox Suelo -->
+                <Label fx:id="lblCmbSuelo" text="Suelo:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbSuelo" promptText="Selecciona suelo"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                <!-- ComboBox Planeta -->
+                <Label fx:id="lblCmbPlaneta" text="Planeta de origen:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbPlaneta" promptText="Selecciona planeta"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+                <!-- ComboBox Misión -->
+                <Label fx:id="lblCmbMision" text="Misión:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbMision" promptText="Selecciona misión"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+                <!-- ComboBox Contenedor -->
+                <Label fx:id="lblCmbContenedor" text="Contenedor:"
+                       style="-fx-font-weight: bold;" managed="false" visible="false"
+                       GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbContenedor" promptText="Selecciona contenedor"
+                          maxWidth="Infinity" managed="false" visible="false"
+                          GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- ESTADO -->
+            <Label fx:id="lblEstado" text="" wrapText="true"
+                   style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+
+            <!-- TABLA -->
+            <TableView fx:id="tabla" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colTipo"        text="Tipo"         prefWidth="110.0"/>
-                    <TableColumn fx:id="colId"           text="ID"           prefWidth="80.0"/>
-                    <TableColumn fx:id="colNombre"       text="Nombre"       prefWidth="150.0"/>
-                    <TableColumn fx:id="colSexo"         text="Sexo"         prefWidth="60.0"/>
-                    <!-- Columna extra: muestra Experiencia o Especialidad según tipo -->
-                    <TableColumn fx:id="colExtra"        text="Exp/Especialidad" prefWidth="160.0"/>
+                    <TableColumn fx:id="colId"      text="ID"      prefWidth="80"/>
+                    <TableColumn fx:id="colNombre"   text="Nombre"  prefWidth="160"/>
+                    <TableColumn fx:id="colTipo"     text="Tipo"    prefWidth="110"/>
+                    <TableColumn fx:id="colDetalle"  text="Detalle" prefWidth="420"/>
                 </columns>
+                <placeholder>
+                    <Label text="Sin registros. Usa el menú izquierdo para agregar datos."/>
+                </placeholder>
             </TableView>
 
-           
-            <TextArea fx:id="txtResultado" prefHeight="80.0" editable="false"
-                      style="-fx-background-radius: 8; -fx-border-color: #dcdde1;
-                             -fx-border-radius: 8; -fx-font-size: 12px;"/>
         </VBox>
     </center>
-
-    <bottom>
-        <HBox alignment="CENTER" spacing="10.0"
-              style="-fx-background-color: #ecf0f1; -fx-padding: 12;">
-            <Button text="💾 Guardar" onAction="#guardar"
-                    style="-fx-background-color: #8e44ad; -fx-text-fill: white;
-                           -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 15 7 15;"/>
-            <Button text="📂 Cargar"  onAction="#cargar"
-                    style="-fx-background-color: #16a085; -fx-text-fill: white;
-                           -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 15 7 15;"/>
-            <Button text="📋 Listar"  onAction="#listar"
-                    style="-fx-background-color: #2980b9; -fx-text-fill: white;
-                           -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 15 7 15;"/>
-            <Button text="🚪 Salir"   onAction="#salir"
-                    style="-fx-background-color: #c0392b; -fx-text-fill: white;
-                           -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 7 15 7 15;"/>
-        </HBox>
-    </bottom>
 
 </BorderPane>

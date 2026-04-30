@@ -1,6 +1,5 @@
 package co.edu.poli.contexto3.servicios;
-
-import co.edu.poli.contexto3.modelo.*;
+import co.edu.poli.contexto3.modelo.Cientifico;
 
 /**
  * Clase que representa un Químico, la cual hereda de la clase Cientifico
@@ -10,15 +9,10 @@ public class Quimico extends Cientifico {
 
     private static final long serialVersionUID = 1L;
 
-	/**
+    /**
      * Especialización del químico.
      */
     private String especializacion;
-
-    /**
-     * Sexo del químico.
-     */
-    private String sexo;
 
     /**
      * Uniforme del químico (compartido por todas las instancias).
@@ -29,22 +23,27 @@ public class Quimico extends Cientifico {
      * Constructor vacío de la clase Quimico.
      */
     public Quimico() {
+        super();
     }
 
     /**
      * Constructor con parámetros básicos del químico.
-     * 
-     * @param nombre Nombre del químico
+     *
      * @param id Identificador del químico
-     * @param sexo Sexo del químico
+     * @param nombre Nombre del químico
+     * @param especialidad Especialidad del científico base
      */
-    public Quimico(String nombre, String id, String sexo) {
-        super(nombre, id, sexo);
+    public Quimico(String id,String nombre, String especialidad, int experienciaAnios) {
+        super(id, nombre, especialidad, experienciaAnios);
     }
 
-    /**
+    public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
      * Obtiene la especialización del químico.
-     * 
+     *
      * @return especialización
      */
     public String getEspecializacion() {
@@ -53,7 +52,7 @@ public class Quimico extends Cientifico {
 
     /**
      * Establece la especialización del químico.
-     * 
+     *
      * @param especializacion nueva especialización
      */
     public void setEspecializacion(String especializacion) {
@@ -61,26 +60,8 @@ public class Quimico extends Cientifico {
     }
 
     /**
-     * Obtiene el sexo del químico.
-     * 
-     * @return sexo del químico
-     */
-    public String getSexo() {
-        return sexo;
-    }
-
-    /**
-     * Establece el sexo del químico.
-     * 
-     * @param sexo nuevo valor
-     */
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    /**
      * Obtiene el uniforme del químico.
-     * 
+     *
      * @return uniforme actual
      */
     public static String getUniforme() {
@@ -89,7 +70,7 @@ public class Quimico extends Cientifico {
 
     /**
      * Establece el uniforme del químico.
-     * 
+     *
      * @param uniforme nuevo uniforme
      */
     public static void setUniforme(String uniforme) {
@@ -98,7 +79,7 @@ public class Quimico extends Cientifico {
 
     /**
      * Calcula la edad del químico a partir del año actual.
-     * 
+     *
      * @param anioactual año actual
      * @return edad calculada (actualmente retorna 0)
      */
@@ -108,27 +89,18 @@ public class Quimico extends Cientifico {
 
     /**
      * Devuelve una representación en cadena del objeto Quimico.
-     * 
+     *
      * @return cadena con la información del químico
      */
     @Override
     public String toString() {
-        return super.toString()+"Quimico{" +
-                "nombre='" + getNombre() + '\'' +
-                ", id='" + getId() + '\''+
+        return super.toString() +
+                ", Quimico{" +
                 "especializacion='" + especializacion + '\'' +
-                ", sexo='" + sexo + '\'' +
                 ", uniforme='" + uniforme + '\'' +
                 '}';
     }
 
-    /**
-     * Realiza una operación matemática sobre un entero.
-     * 
-     * @param i valor de entrada
-     * @return resultado de multiplicar el valor por 5
-     */
-    public int operacion(int i) {
-        return i * 5;
-    }
+  
+ 
 }

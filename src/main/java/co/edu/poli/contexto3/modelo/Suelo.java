@@ -1,9 +1,10 @@
 package co.edu.poli.contexto3.modelo;
-
+import java.io.Serializable;
 /**
  * Clase que representa el suelo con sus características físicas.
  */
-public class Suelo {
+public class Suelo implements Serializable{
+	 private static final long serialVersionUID = 1L;
 
     /**
      * Nombre del suelo.

@@ -1,40 +1,41 @@
 package co.edu.poli.contexto3.modelo;
 
-public class Astronauta extends Persona {
+public class Astronauta extends Entidad {
 
-    private static final long serialVersionUID = 3L;
+    private String agenciaEspacial;
+    private String rango;
 
-    private String especialidad;
-
-    public Astronauta() {}
-
-    public Astronauta(String nombre, String id, String sexo) {
-        super(nombre, id, sexo);
+    public Astronauta() {
+        super();
     }
 
-    public Astronauta(String nombre, String id, String sexo, String especialidad) {
-        super(nombre, id, sexo);
-        this.especialidad = especialidad;
+    public Astronauta(String id, String nombre, String agenciaEspacial, String rango) {
+        super(id, nombre); 
+        this.agenciaEspacial = agenciaEspacial;
+        this.rango = rango;
     }
 
-    public String getEspecialidad() { return especialidad; }
 
-    public void setEspecialidad(String especialidad) {
-        if (especialidad == null || especialidad.trim().isEmpty())
-            throw new IllegalArgumentException("La especialidad no puede ser nula o vacía");
-        this.especialidad = especialidad;
+    public String getAgenciaEspacial() {
+        return agenciaEspacial;
     }
 
-    @Override
-    public int sueldoSinPasaje() {
-        return 5000000 - 180000;
+    public String getRango() {
+        return rango;
     }
+
+
+    public void setAgenciaEspacial(String agenciaEspacial) {
+        this.agenciaEspacial = agenciaEspacial;
+    }
+
+    public void setRango(String rango) {
+        this.rango = rango;
+    }
+
 
     @Override
     public String toString() {
-        return "Astronauta{nombre='" + getNombre() +
-               "', id='" + getId() +
-               "', sexo='" + getSexo() +
-               "', especialidad='" + especialidad + "'}";
+        return getNombre(); 
     }
 }

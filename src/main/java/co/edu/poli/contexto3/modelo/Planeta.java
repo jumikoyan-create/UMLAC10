@@ -1,10 +1,11 @@
 package co.edu.poli.contexto3.modelo;
-
+import java.io.Serializable;
 /**
  * Clase que representa un planeta con sus características físicas
  * y su relación con misiones y suelo.
  */
-public class Planeta {
+public class Planeta implements Serializable{
+	 private static final long serialVersionUID = 1L;
 
     /**
      * Nombre del planeta.

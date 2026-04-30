@@ -1,41 +1,47 @@
 package co.edu.poli.contexto3.servicios;
 
-import co.edu.poli.contexto3.modelo.Persona;
+import co.edu.poli.contexto3.modelo.Entidad;
 
 /**
  * Interfaz que define las operaciones básicas CRUD
- * (Crear, Leer, Actualizar y Eliminar) para objetos de tipo Persona.
+ * (Crear, Leer, Actualizar y Eliminar) para objetos
+ * que heredan de Entidad.
+ *
+ * Permite manejar cualquier tipo de entidad del sistema
+ * (Astronauta, Cientifico, MuestraSuelo, etc.).
  */
 public interface OperacionCRUD {
 
     /**
-     * Crea una nueva persona.
-     * 
-     * @param p objeto Persona a crear
+     * Crea una nueva entidad en el sistema.
+     *
+     * @param e objeto Entidad a crear
      */
-    void crear(Persona p);
+    void crear(Entidad e);
 
     /**
-     * Lee o busca una persona por su ID.
-     * 
-     * @param id identificador de la persona
-     * @return objeto Persona encontrado o null si no existe
+     * Busca una entidad por su identificador.
+     *
+     * @param id identificador de la entidad
+     * @return entidad encontrada o null si no existe
      */
-    Persona leer(String id);
+    Entidad leer(String id);
 
     /**
-     * Actualiza la información de una persona existente.
-     * 
-     * @param id identificador de la persona a actualizar
-     * @param p nueva información de la persona
+     * Actualiza la información de una entidad existente.
+     *
+     * @param id identificador de la entidad a actualizar
+     * @param e nueva información de la entidad
      */
-    void actualizar(String id, Persona p);
+    void actualizar(String id, Entidad e);
 
     /**
-     * Elimina una persona por su ID.
-     * 
-     * @param id identificador de la persona a eliminar
+     * Elimina una entidad del sistema por su ID.
+     *
+     * @param id identificador de la entidad a eliminar
      */
     void eliminar(String id);
+    
 
+    Entidad[] listar();
 }

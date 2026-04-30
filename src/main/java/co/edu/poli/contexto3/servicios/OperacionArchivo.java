@@ -1,30 +1,32 @@
 package co.edu.poli.contexto3.servicios;
 
-import co.edu.poli.contexto3.modelo.Persona;
+import co.edu.poli.contexto3.modelo.Entidad;
 
 /**
  * Interfaz que define las operaciones de manejo de archivos
- * para objetos de tipo Persona, incluyendo serialización
+ * para objetos de tipo Entidad, incluyendo serialización
  * y deserialización.
+ *
+ * Permite persistir cualquier objeto del sistema que herede de Entidad.
  */
 public interface OperacionArchivo {
 
     /**
-     * Serializa un arreglo de personas y lo guarda en un archivo.
-     * 
-     * @param personas arreglo de objetos Persona a guardar
+     * Serializa un arreglo de entidades y lo guarda en un archivo.
+     *
+     * @param entidades arreglo de objetos Entidad a guardar
      * @param path ruta donde se almacenará el archivo
      * @param name nombre del archivo
      * @return mensaje indicando el resultado de la operación
      */
-    public String serializar(Persona[] personas, String path, String name);
+    public String serializar(Entidad[] entidades, String path, String name);
 
     /**
-     * Deserializa un archivo y recupera un arreglo de personas.
-     * 
+     * Deserializa un archivo y recupera un arreglo de entidades.
+     *
      * @param path ruta del archivo
      * @param name nombre del archivo
-     * @return arreglo de objetos Persona recuperado
+     * @return arreglo de objetos Entidad recuperado
      */
-    public Persona[] deserializar(String path, String name);
+    public Entidad[] deserializar(String path, String name);
 }
